@@ -1,46 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Type Links</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        ol {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        a {
-            color: #2980b9;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        a:hover {
-            color: #3498db;
-            text-decoration: underline;
-        }
-        .external::after {
-            content: " (External Site)";
-            font-size: 0.8em;
-            color: #7f8c8d;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Session Logger Test Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    section { margin-bottom: 2em; }
+    button, input, a { margin-right: 1em; }
+    nav a { margin-right: 0.5em; cursor: pointer; color: blue; text-decoration: underline; }
+    #spa-content { border: 1px solid #ccc; padding: 1em; margin-top: 1em; }
+  </style>
 </head>
-  <body>
-      <h1>Hello!</h1>
-  </body>
+<body>
+  <h1>Session Logger Test Page</h1>
+
+  <section id="navigation">
+    <h2>URL Load</h2>
+    <a href="/">Go Home</a>
+    <a href="/other">Go Other</a>
+  </section>
+
+  <section id="interactions">
+    <h2>Website Interaction</h2>
+    <label><input type="radio" name="option" value="1"> Option 1</label>
+    <label><input type="radio" name="option" value="2"> Option 2</label>
+    <button id="action-button">Click Me</button>
+  </section>
+
+  <section id="file-transfer">
+    <h2>File Upload / Download</h2>
+    <form id="upload-form">
+      <input type="file" id="file-input"><button type="button" id="upload-btn">Upload</button>
+    </form>
+    <br />
+    <a href="/mock-file.docx" download id="download-link">Download Sample File</a>
+  </section>
+
+  <section id="clipboard">
+    <h2>Copy / Paste</h2>
+    <textarea id="source-text" rows="3">This is some sample text to copy.</textarea><br>
+    <button id="copy-btn">Copy Text</button>
+    <textarea id="dest-text" rows="3" placeholder="Paste here"></textarea><br>
+    <button id="paste-btn">Paste Text</button>
+  </section>
+
+  <section id="spa">
+    <h2>SPA Navigation</h2>
+    <nav>
+      <a data-target="home">Home</a>
+      <a data-target="dashboard">Dashboard</a>
+      <a data-target="settings">Settings</a>
+    </nav>
+    <div id="spa-content">Home Content</div>
+  </section>
+
+  <section id="print">
+    <h2>Print</h2>
+    <button id="print-btn">Print This Page</button>
+  </section>
+
+  <script>
+    // Website interaction
+    document.getElementById('action-button').addEventListener('click', () => {
+      console.log('Button clicked');
+    });
+
+    // Upload
+    document.getElementById('upload-btn').addEventListener('click', () => {
+      console.log('Upload simulated: ' + document.getElementById('file-input').value);
+    });
+
+    // Copy/paste
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      const src = document.getElementById('source-text');
+      src.select();
+      document.execCommand('copy');
+      console.log('Content copied to clipboard');
+    });
+    document.getElementById('paste-btn').addEventListener('click', () => {
+      document.getElementById('dest-text').focus();
+      document.execCommand('paste');
+      console.log('Content pasted from clipboard');
+    });
+
+    // SPA navigation
+    const spaContent = document.getElementById('spa-content');
+    document.querySelectorAll('#spa nav a').forEach(el => {
+      el.addEventListener('click', () => {
+        const target = el.getAttribute('data-target');
+        spaContent.innerText = target.charAt(0).toUpperCase() + target.slice(1) + ' Content';
+        console.log(`SPA navigation: ${target}`);
+      });
+    });
+
+    // Print
+    document.getElementById('print-btn').addEventListener('click', () => {
+      window.print();
+    });
+  </script>
+</body>
 </html>
