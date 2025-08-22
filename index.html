@@ -14,36 +14,6 @@
 <body>
   <h1>Session Logger Test Page</h1>
 
-  <section id="navigation">
-    <h2>URL Load</h2>
-    <a href="/">Go Home</a>
-    <a href="/other">Go Other</a>
-  </section>
-
-  <section id="interactions">
-    <h2>Website Interaction</h2>
-    <label><input type="radio" name="option" value="1"> Option 1</label>
-    <label><input type="radio" name="option" value="2"> Option 2</label>
-    <button id="action-button">Click Me</button>
-  </section>
-
-  <section id="file-transfer">
-    <h2>File Upload / Download</h2>
-    <form id="upload-form">
-      <input type="file" id="file-input"><button type="button" id="upload-btn">Upload</button>
-    </form>
-    <br />
-    <a href="/mock-file.docx" download id="download-link">Download Sample File</a>
-  </section>
-
-  <section id="clipboard">
-    <h2>Copy / Paste</h2>
-    <textarea id="source-text" rows="3">This is some sample text to copy.</textarea><br>
-    <button id="copy-btn">Copy Text</button>
-    <textarea id="dest-text" rows="3" placeholder="Paste here"></textarea><br>
-    <button id="paste-btn">Paste Text</button>
-  </section>
-
   <section id="spa">
     <h2>SPA Navigation</h2>
     <nav>
@@ -54,34 +24,7 @@
     <div id="spa-content">Home Content</div>
   </section>
 
-  <section id="print">
-    <h2>Print</h2>
-    <button id="print-btn">Print This Page</button>
-  </section>
-
   <script>
-    // Website interaction
-    document.getElementById('action-button').addEventListener('click', () => {
-      console.log('Button clicked');
-    });
-
-    // Upload
-    document.getElementById('upload-btn').addEventListener('click', () => {
-      console.log('Upload simulated: ' + document.getElementById('file-input').value);
-    });
-
-    // Copy/paste
-    document.getElementById('copy-btn').addEventListener('click', () => {
-      const src = document.getElementById('source-text');
-      src.select();
-      document.execCommand('copy');
-      console.log('Content copied to clipboard');
-    });
-    document.getElementById('paste-btn').addEventListener('click', () => {
-      document.getElementById('dest-text').focus();
-      document.execCommand('paste');
-      console.log('Content pasted from clipboard');
-    });
 
     // SPA navigation
     const spaContent = document.getElementById('spa-content');
@@ -93,10 +36,6 @@
       });
     });
 
-    // Print
-    document.getElementById('print-btn').addEventListener('click', () => {
-      window.print();
-    });
   </script>
 </body>
 </html>
