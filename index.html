@@ -32,32 +32,37 @@
             font-size: 0.8em;
             color: #7f8c8d;
         }
+        .text-field {
+            margin-top: 20px;
+        }
+        .text-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .text-field textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .text-field textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
     </style>
 </head>
 <body>
     <h1> SESSION LOGGER TEST PAGE </h1>
   <a href="https://www.google.com" target="_blank" class="google-link">Click here</a>
-
-  <section id="spa">
-    <h2>SPA section</h2>
-    <nav>
-      <a data-target="home">Home</a>
-      <a data-target="dashboard">Dashboard</a>
-      <a data-target="settings">Settings</a>
-    </nav>
-    <div id="spa-content">Home Content</div>
-  </section>
-
-  <script>
-    // SPA navigation (same as before)
-    const spaContent = document.getElementById('spa-content');
-    document.querySelectorAll('#spa nav a').forEach(el => {
-      el.addEventListener('click', () => {
-        const target = el.getAttribute('data-target');
-        spaContent.innerText = target.charAt(0).toUpperCase() + target.slice(1) + ' Content';
-        console.log(`SPA navigation: ${target}`);
-      });
-    });
-  </script>
+    <div class="text-field">
+        <label for="pasteText">Paste your text here:</label>
+        <textarea id="pasteText" name="pasteText" placeholder="Paste or type your text here..."></textarea>
+    </div>
 </body>
 </html>
